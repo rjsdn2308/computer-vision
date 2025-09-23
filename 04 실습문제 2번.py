@@ -37,10 +37,11 @@ background=np.zeros((1,65),np.float64)
 foreground=np.zeros((1,65),np.float64)
 
 cv.grabCut(img,mask,None,background,foreground,1,cv.GC_INIT_WITH_MASK)
-# 
+# 5에서 1로 바꿨을때 실행 결과는 실행 속도가 빠르지만 왼쪽 마우스와 오른쪽 마우스로 그린 부분은 5보다 완벽하게 가려지지 않았습니다.
 mask2=np.where((mask==cv.GC_BGD)|(mask==cv.GC_PR_BGD),0,1).astype('uint8')
 grab=img*mask2[:,:,np.newaxis]
 cv.imshow('Grab cut image',grab)
 
 cv.waitKey()
+
 cv.destroyAllWindows()

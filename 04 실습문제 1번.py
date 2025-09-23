@@ -37,10 +37,11 @@ background=np.zeros((1,65),np.float64)
 foreground=np.zeros((1,65),np.float64)
 # GrabCut는 이미지 분할 알고리즘입니다.
 cv.grabCut(img,mask,None,background,foreground,5,cv.GC_INIT_WITH_MASK)
-# 5의 의미는 
+# 5의 의미는 GrabCut를 사용해서 이미지가 생성되는 속도를 의미합니다
 mask2=np.where((mask==cv.GC_BGD)|(mask==cv.GC_PR_BGD),0,1).astype('uint8')
 grab=img*mask2[:,:,np.newaxis]
 cv.imshow('Grab cut image',grab)
 
 cv.waitKey()
+
 cv.destroyAllWindows()
